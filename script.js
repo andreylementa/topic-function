@@ -64,16 +64,28 @@ const changePassportNumber = function (person) {
 changePassportNumber(passenger1145);
 checkIn(flightNumber, passenger1145);
 
+// Функции Принимающие Callback Функции
+
+const removeSpaces = function (text) {
+  return text.replace(/ /g, '').toLowerCase();
+};
+
 const upperFirstWord = function (text) {
-  const [firstWord, ...otherText] = text.split(' ');
-
-  const result = [firstWord.toUpperCase(), ...otherText].join(' ');
-  return result;
+  const [first, ...others] = text.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
 };
 
-const converter = function (text, func) {
-  console.log(`The original text: ${text}`);
-  console.log(`The converted text: ${func(text)}`);
-  console.log(func.name);
+// Higher-Order Function
+const converter = function (str, func) {
+  console.log(`The original text: ${str}`);
+  console.log(`The converted text: ${func(str)}`);
+
+  console.log(`Converted by: ${func.name}`);
 };
-converter('This text conv', upperFirstWord);
+
+converter('Hello to everyone!', upperFirstWord);
+converter('Hello to everyone!', removeSpaces);
+
+// Callback functions are very common in JS
+const twice = num => console.log(num * 2);
+[1, 2, 3].forEach(twice);
