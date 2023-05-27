@@ -166,3 +166,42 @@ const flightData = [111, 'Nick Wong'];
 
 book.call(airline2, ...flightData);
 console.log(airline2);
+
+// // Метод bind()
+const bookAirline2 = book.bind(airline2);
+bookAirline2(45, 'John Doe');
+console.log(airline2);
+
+const airline3 = {
+  airlineName: 'USFlights',
+  iataCode: 'USF',
+  bookings: [],
+};
+
+const bookAirline3 = book.bind(airline3);
+bookAirline3(11, 'Marta Jonson');
+console.log(airline3);
+
+const bookAirline3Flight21 = book.bind(airline3, 21);
+bookAirline3Flight21('Jack Smith');
+bookAirline3Flight21('Lana Del Ray');
+
+// bind() with event listeners
+airline1.airplanes = 200;
+airline1.purchaseAirplane = function () {
+  console.log(this);
+  this.airplanes++;
+  console.log(this.airplanes);
+};
+
+// airline1.purchaseAirplane();
+
+document
+  .querySelector('#purchase')
+  .addEventListener('click', airline1.purchaseAirplane.bind(airline1));
+
+// Partial application
+const getPercentage = (totalValue, value) => (value / totalValue) * 100;
+console.log(getPercentage(20, 23789));
+const getPercentage23789 = getPercentage.bind(null, 23789);
+console.log(getPercentage23789(10000));
