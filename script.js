@@ -63,3 +63,17 @@ const changePassportNumber = function (person) {
 
 changePassportNumber(passenger1145);
 checkIn(flightNumber, passenger1145);
+
+const upperFirstWord = function (text) {
+  const [firstWord, ...otherText] = text.split(' ');
+
+  const result = [firstWord.toUpperCase(), ...otherText].join(' ');
+  return result;
+};
+
+const converter = function (text, func) {
+  console.log(`The original text: ${text}`);
+  console.log(`The converted text: ${func(text)}`);
+  console.log(func.name);
+};
+converter('This text conv', upperFirstWord);
