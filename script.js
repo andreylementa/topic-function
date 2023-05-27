@@ -89,3 +89,24 @@ converter('Hello to everyone!', removeSpaces);
 // Callback functions are very common in JS
 const twice = num => console.log(num * 2);
 [1, 2, 3].forEach(twice);
+
+// Функции Возвращающие Функции
+
+const greet = function (greetingText) {
+  return function (name) {
+    console.log(`${greetingText} ${name}!`);
+  };
+};
+
+const hi = greet('Hi');
+hi('Jack');
+hi('Diana');
+hi('Mick');
+
+greet('Hey')('Lilu');
+
+// greet() =>
+const arrGreet = greetingText => name =>
+  console.log(`${greetingText} ${name}!`);
+
+arrGreet('Hello')('Lilu');
