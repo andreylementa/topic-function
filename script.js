@@ -205,3 +205,70 @@ const getPercentage = (totalValue, value) => (value / totalValue) * 100;
 console.log(getPercentage(20, 23789));
 const getPercentage23789 = getPercentage.bind(null, 23789);
 console.log(getPercentage23789(10000));
+
+// TASK 1
+
+//const logNewAnswer = function () {
+//  const answer = Number(
+//    prompt(
+//      'What programming language would you like to learn? \n  0: JavaScript \n  1: Python \n  2: Ruby \n  3: Java \n  4: C# \n  (Enter option number)'
+//    )
+//  );
+//  if (
+//    answer === 0 ||
+//    answer === 1 ||
+//    answer === 2 ||
+//    answer === 3 ||
+//    answer === 4
+//  ) {
+//    this.answers[answer]++;
+//    alert(this.answers);
+//  } else {
+//    alert('Enter correct value');
+//  }
+//};
+
+const survey = {
+  question: 'What programming language would you like to learn?',
+  options: ['0: JavaScript', '1: Python', '2: Ruby', '3: Java', '4: C#'],
+  answers: new Array(5).fill(0),
+  logNewAnswer() {
+    //Display a prompt
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Enter option number)`
+      )
+    );
+    // console.log(answer);
+
+    //Update answers
+    if (
+      typeof answer === 'number' &&
+      answer >= 0 &&
+      answer < this.answers.length
+    ) {
+      this.answers[answer]++;
+    }
+    // console.log(this.answers);
+    this.printResults();
+    this.printResults('array');
+    this.printResults('string');
+  },
+  printResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Survey results: ${this.answers.join(', ')}.`);
+    }
+  },
+};
+
+// survey.logNewAnswer();
+// survey.printResults('string');
+
+document
+  .querySelector('#survey')
+  .addEventListener('click', survey.logNewAnswer.bind(survey));
+
+survey.printResults.call({ answers: [7, 1, 4] }, 'array');
+survey.printResults.call({ answers: [3, 6, 9, 2, 5, 4, 4] }, 'string');
