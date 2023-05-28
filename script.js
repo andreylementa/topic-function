@@ -272,3 +272,11 @@ document
 
 survey.printResults.call({ answers: [7, 1, 4] }, 'array');
 survey.printResults.call({ answers: [3, 6, 9, 2, 5, 4, 4] }, 'string');
+
+(function () {
+  const h2 = document.querySelector('h2');
+  h2.style.color = 'orange';
+  document.querySelector('body').addEventListener('click', function () {
+    h2.style.color = 'green';
+  });
+})();
